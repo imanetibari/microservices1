@@ -1,0 +1,27 @@
+<!-- terrain.component.html -->
+<div class="container">
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Categorie ID</th>
+                <th>Surface</th>
+                <th>ID</th>
+                <th>Proprietaire CIN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let terrain of terrains; let i = index" [class.active-row]="i % 2 === 0">
+                <td>{{ terrain.categorie_id }}</td>
+                <td>{{ terrain.surface }}</td>
+                <td>{{ terrain.id }}</td>
+                <td>{{ terrain.proprietairecin }}</td>
+                <td>
+                    <button (click)="deleteTerrain(terrain.id)" class="button-delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="newTerrain()" class="button-add">Add New Terrain</button>
+</div>

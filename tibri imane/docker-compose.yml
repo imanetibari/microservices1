@@ -1,0 +1,81 @@
+version: '3'
+
+services:
+  my-spring-boot-app:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+
+  mysql-proprietaire:
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: proprietaire
+    ports:
+      - "3307:3306"  
+    networks:
+      - n3
+
+  mysql-taxetnb:
+    image: mysql:latest
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: taxeTnb
+    ports:
+      - "3308:3306"  
+    networks:
+      - n3
+
+  proprietaire-service:
+    build:
+      context: ./proprietaire
+    ports:
+      - "8088:8088"
+    depends_on:
+      - mysql-proprietaire
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-proprietaire:3306/proprietaire?createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    networks:
+      - n3
+
+  taxetnb-service:
+    build:
+      context: ./taxeTnb
+    ports:
+      - "8089:8089"
+    depends_on:
+      - mysql-taxetnb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-taxetnb:3306/taxeTnb?createDatabaseIfNotExist=true&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+    networks:
+      - n3
+
+  phpmyadmin-proprietaire:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql-proprietaire
+      PMA_PORT: 3306
+    ports:
+      - "8082:80"
+    networks:
+      - n3
+
+  phpmyadmin-taxetnb:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql-taxetnb
+      PMA_PORT: 3306
+    ports:
+      - "8083:80"
+    networks:
+      - n3
+
+networks:
+  n3:
+    external: true

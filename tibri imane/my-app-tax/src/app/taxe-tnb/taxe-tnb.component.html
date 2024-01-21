@@ -1,0 +1,36 @@
+<div class="container">
+    
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Categorie ID</th>
+                <th>Montant</th>
+                <th>Taux ID</th>
+                <th>Terrain ID</th>
+                <th>Year</th>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Label</th>
+                <th>Proprietaire CIN</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tax of taxes; let i = index" [class.active-row]="i % 2 === 0">
+                <td>{{ tax.categorie_id }}</td>
+                <td>{{ tax.montant }}</td>
+                <td>{{ tax.taux_id }}</td>
+                <td>{{ tax.terrain_id }}</td>
+                <td>{{ tax.year }}</td>
+                <td>{{ tax.id }}</td>
+                <td>{{ tax.description }}</td>
+                <td>{{ tax.label }}</td>
+                <td>{{ tax.proprietairecin }}</td>
+                <td>
+                    <button (click)="deleteTax(tax.id)" class="button-delete">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button (click)="newTax()" class="button-add">Add New Tax</button>
+</div>

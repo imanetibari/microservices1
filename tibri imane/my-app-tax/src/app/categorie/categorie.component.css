@@ -1,0 +1,73 @@
+.styled-table {
+    border-collapse: collapse;
+    margin: 50px 0;
+    font-size: 1em;
+    font-family: sans-serif;
+    min-width: 1000px;
+    box-shadow: 0 0 50px rgba(21, 255, 95, 0.15);
+    margin-left: 10%;
+}
+  
+  .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 15px;
+  }
+  
+  .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  .styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+  
+  .button-add, .button-edit, .button-delete, .button-save, .button-cancel {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button-add {
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  .button-edit {
+    background-color: #f0ad4e;
+    color: white;
+  }
+  
+  .button-delete {
+    background-color: #d9534f;
+    color: white;
+  }
+  
+  .button-save {
+    background-color: #5bc0de;
+    color: white;
+  }
+  
+  .button-cancel {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  /* Add additional styling for form input fields if necessary */
+  
